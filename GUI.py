@@ -25,7 +25,7 @@ class startApp(tk.Tk):
         self.frames = {}
 
         #loop for frame/page initialization
-        for F in (StartPage, Page1, Page2):
+        for F in (StartPage, ChoicePage, DonatePage):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
@@ -40,17 +40,13 @@ class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.configure(bg="white")
-        self.rowconfigure([0, 1, 2, 3, 4, 5, 6, 7, 8], minsize=10, weight=1)
+        self.rowconfigure([0, 1, 2, 3, 4, 5, 6, 7, 8], minsize=0, weight=1)
         self.columnconfigure([0, 1, 2, 3, 4, 5, 6, 7, 8], minsize=0, weight=1) #weight allows for resizing
 
         b_startimg = tk.PhotoImage(file='images/b_pink.png')
-        img_label = tk.Label(self, image=b_startimg)
-        #img_label.photo = b_startimg
-        #img_label.pack()
-
 
         #b_start = tk.Button(self, text="Start a Trade", width=200, command=lambda:controller.show_frame(Page1))
-        b_start = tk.Button(self, image=b_startimg, command=lambda: controller.show_frame(Page1), borderwidth=0, bg="white", activebackground="white")
+        b_start = tk.Button(self, image=b_startimg, command=lambda: controller.show_frame(ChoicePage), borderwidth=0, bg="white", activebackground="white")
         b_start.photo = b_startimg
         b_start.grid(row=3, rowspan=1, column=3, columnspan=3, sticky="nsew")
 
@@ -65,13 +61,61 @@ class StartPage(tk.Frame):
 
 
 
-class Page1(tk.Frame):
+class ChoicePage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.configure(bg="white")
+        self.rowconfigure([0, 1, 2, 3, 4, 5], minsize=50, weight=0)
+        self.columnconfigure([0, 1, 2, 3], minsize=50, weight=0)  # weight allows for resizing
+
+        b_donateimg = tk.PhotoImage(file='images/b_donateo50.png')
+        b_shopimg = tk.PhotoImage(file='images/b_shop.png')
+        b_tradeimg = tk.PhotoImage(file='images/b_trade.png')
+
+        img1 = tk.PhotoImage(file='images/oneimg.png')
+        img2 = tk.PhotoImage(file='images/twoimg.png')
+        img3 = tk.PhotoImage(file='images/threeimg.png')
+
+        imglab1 = Label(self, image=img1)
+        imglab2 = Label(self, image=img2)
+        imglab3 = Label(self, image=img3)
+
+        imglab1.photo=img1
+        imglab2.photo=img2
+        imglab3.photo=img3
+
+        imglab1.grid(row=0, column=0)
+        imglab2.grid(row=2, column=0)
+        imglab3.grid(row=4, column=0)
+
+
+
+        b_donate = tk.Button(self, image=b_donateimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white")
+        b_donate.photo = b_donateimg
+        b_donate.grid(row=0, column=1, columnspan=2)
+        donatelabel = tk.Label(self,text= "Donate washed clothing items to the bin below. \nGain 1 Shop Credit per Item.", font=("Gloucester MT Extra Condensed", 50), justify="left", bg="white")
+        donatelabel.grid(row=1,column=2, columnspan=2)
+
+        b_shop = tk.Button(self, image=b_shopimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white")
+        b_shop.photo = b_shopimg
+        b_shop.grid(row=2, column=1, columnspan=2)
+        shoplabel = tk.Label(self, text= "Browse through our washed clothes and select one to rent. \nPick up your item at the Clothing Collection Window", font=("Gloucester MT Extra Condensed", 50), justify="left", bg="white")
+        shoplabel.grid(row=3,column=2, columnspan=4)
+
+        b_trade = tk.Button(self, image=b_tradeimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white")
+        b_trade.photo = b_tradeimg
+        b_trade.grid(row=4, column=1, columnspan=2)
+        tradelabel = tk.Label(self, text= "Once you are done wearing your item, redonate it and take another", font=("Gloucester MT Extra Condensed", 50), justify="left", bg="white")
+        tradelabel.grid(row=5,column=2, columnspan=6)
+
+
+        #
+
+
+class DonatePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-class Page2(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
 
 
 """
