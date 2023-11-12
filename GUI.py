@@ -76,9 +76,9 @@ class ChoicePage(tk.Frame):
         img2 = tk.PhotoImage(file='images/twoimg.png')
         img3 = tk.PhotoImage(file='images/threeimg.png')
 
-        imglab1 = Label(self, image=img1)
-        imglab2 = Label(self, image=img2)
-        imglab3 = Label(self, image=img3)
+        imglab1 = Label(self, image=img1, borderwidth=0)
+        imglab2 = Label(self, image=img2, borderwidth=0)
+        imglab3 = Label(self, image=img3, borderwidth=0)
 
         imglab1.photo=img1
         imglab2.photo=img2
