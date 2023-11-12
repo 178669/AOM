@@ -88,8 +88,6 @@ class ChoicePage(tk.Frame):
         imglab2.grid(row=2, column=0)
         imglab3.grid(row=4, column=0)
 
-
-
         b_donate = tk.Button(self, image=b_donateimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white")
         b_donate.photo = b_donateimg
         b_donate.grid(row=0, column=1, columnspan=2)
