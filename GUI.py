@@ -182,12 +182,13 @@ class ShopPage(tk.Frame):
         tokentitle.grid(row=2, column=0)
 
         b_home = tk.Button(self, text="HOME", highlightthickness=0, command=lambda: controller.show_frame(StartPage))
-        b_home.grid(row=0, column=0, sticky="ne")
+        b_home.grid(row=0, column=3, sticky="ne")
 
         item1img = PhotoImage(file='Images/greyblouse.png')
         item1 = Label(self, image=item1img)
-        item1.photo=item1img
-        item1.grid(row=0, column=0)
+        item1.photo = item1img
+        item1.grid(row=3,column=0)
+
 
 
 
