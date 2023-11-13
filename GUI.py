@@ -179,17 +179,28 @@ class ShopPage(tk.Frame):
         fill1.grid(row=0, column=0)
 
         tokentitle = tk.Label(self, text="SHOP", font=('Ubuntu Condensed', 200), fg="pink", bg="white")
-        tokentitle.grid(row=2, column=0)
+        tokentitle.grid(row=2, column=1)
 
         b_home = tk.Button(self, text="HOME", highlightthickness=0, command=lambda: controller.show_frame(StartPage))
         b_home.grid(row=0, column=3, sticky="ne")
 
-        item1img = PhotoImage(file='Images/greyblouse.png')
+        item1img = PhotoImage(file='ClothesImages/greyblousere.png')
         item1 = Label(self, image=item1img)
         item1.photo = item1img
         item1.grid(row=3,column=0)
 
+        item2img = PhotoImage(file='ClothesImages/redtop.png')
+        item2 = Label(self, image=item2img)
+        item2.photo = item2img
+        item2.grid(row=3,column=1)
 
+        item3img = PhotoImage(file='ClothesImages/blackdress.png')
+        item3 = Label(self, image=item3img)
+        item3.photo = item3img
+        item3.grid(row=3,column=2)
+
+        fill2=LabelFrame(self, width=10, borderwidth=0, highlightthickness=0, bg="white")
+        fill2.grid(row=0, column=0, columnspan=3)
 
 
 """
