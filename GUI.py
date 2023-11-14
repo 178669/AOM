@@ -1,5 +1,9 @@
 from tkinter import *
 import tkinter as tk
+import time
+import serial
+import numpy
+#from PIL import Image, ImageTk
 """
 window = tk.Tk()
 
@@ -8,6 +12,36 @@ window.rowconfigure([0, 1, 2, 3, 4], minsize=50, weight=1)
 window.columnconfigure([0, 1, 2, 3, 4], minsize=50, weight=1) #weight allows for resizing
 window.geometry("800x800")
 """
+
+
+def controlmotor():
+    '''Motor Notes:
+        - 10:1 Gear Ratio [Wood Gear]
+    '''
+    arduino = serial.Serial(
+    port='/dev/ttyUSB0',
+    baudrate=9600,
+    bytesize=serial.EIGHTBITS,
+    parity=serial.PARITY_NONE,
+    stopbits=serial.STOPBITS_ONE,
+    timeout=2,
+    xonxoff=False,
+    rtscts=False,
+    dsrdtr=False,
+    writeTimeout=5)
+    alt = True
+    try:
+        arduino.write("Counter".encode())
+        data = arduino.readline()
+        if data:
+            print(data)
+            alt = True
+        time.sleep(5)
+        controller.show_frame(StartPage)
+    except Exception as e:
+        print(e)
+        arduino.close()
+
 class startApp(tk.Tk):
     #startApp constructor
     def __init__(self, *args, **kwargs):
@@ -49,9 +83,14 @@ class StartPage(tk.Frame):
         b_start = tk.Button(self, image=b_startimg, command=lambda: controller.show_frame(ChoicePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_start.photo = b_startimg
         b_start.grid(row=3, rowspan=1, column=3, columnspan=3, sticky="nsew")
-
+	
         RENT_CLOTHES = tk.Label(self, text="TRADE CLOTHES", bg="white", fg="pink", font=('Ubuntu Condensed', 200))
         RENT_CLOTHES.grid(row=2, column=3, columnspan=3)
+
+        b_motor = tk.Button(self, command=lambda: controlmotor())
+        b_motor.grid(row=4)
+	   
+
 
 """
         b_startimg = tk.PhotoImage(file='images/startbutton.png')
@@ -256,13 +295,40 @@ class Item1Desc(tk.Frame):
         self.rowconfigure(5, weight=1)
         self.columnconfigure(3, weight=1)
 
-        item1title = tk.Label(self, text="Grey Blouse", font=('Ubuntu Condensed', 100), fg="pink", bg="white")
-        item1title.grid(row=0, column=1, columnspan=2)
+        item1title = tk.Label(self, text="RED FLORAL TUBE TOP", font=('Ubuntu Condensed', 100), fg="pink", bg="white")
+        item1title.grid(row=0, column=2, columnspan=3)
+	
+        fill1=LabelFrame(self, width=200, borderwidth=0, highlightthickness=0, bg="white")
+        fill1.grid(row=0, column=0)
+	
+        #image = Image.open("ClothesImages/redtop.png")
+        #resized = image.resize((500, 624))
 
-        item1img = PhotoImage(file='ClothesImages/greyblousere.png')
-        item1 = tk.Button(self, image=item1img, command=lambda: controller.show_frame(Item1Desc))
-        item1.photo = item1img
-        item1.grid(row=2,column=1)
+        item1img1 = PhotoImage(file='ClothesImages/redtop.png')
+        item1img2 = PhotoImage(file='ClothesImages/redtopside.png')
+        item1img3 = PhotoImage(file='ClothesImages/redtopback.png')
+
+        item1_list = [item1img1, item1img2, item1img3]
+
+        #item1 = tk.Label(self, image=item1_list[1])
+        #item1.photo = item1_list[1]
+        #item1.grid(row=2,column=1, columnspan=1)
+        #time.sleep(4)
+        #item1.grid_forget()
+        
+        for i in range(len(item1_list)-1):
+            item1 = tk.Label(self, image=item1_list[i])
+            item1.photo = item1_list[i]
+            item1.grid(row=2,column=1, columnspan=1)
+            time.sleep(4)
+            item1.grid_forget()
+            if i == (len(item1_list)-1):
+                i=i+1
+        
+ 
+
+	
+#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
 
 
 
