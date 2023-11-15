@@ -307,7 +307,7 @@ class Item1Desc_1(tk.Frame):
         #image = Image.open("ClothesImages/redtop.png")
         #resized = image.resize((500, 624))
 
-        item1img1 = PhotoImage(file='ClothesImages1024/redtop.png')
+        item1img1 = PhotoImage(file='ClothesImages1024/redtopdup.png')
         item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
         item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
 
@@ -322,5 +322,7 @@ class Item1Desc_1(tk.Frame):
 
 app = startApp()
 app.attributes('-fullscreen', True)
-app.geometry("1920x1080")
+app.config(cursor="none")
+#app.geometry("1920x1080") #enable this for demo
 app.mainloop()
+#test
