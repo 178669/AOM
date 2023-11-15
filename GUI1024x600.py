@@ -200,10 +200,10 @@ class TokenPage(tk.Frame):
         fill1=LabelFrame(self, height=100, borderwidth=0, highlightthickness=0, bg="white")
         fill1.grid(row=0, column=0)
 
-        tokentitle = tk.Label(self, text="Please Tap Your ID", font=('Ubuntu Condensed', 150), fg="pink", bg="white")
+        tokentitle = tk.Label(self, text="Please Tap Your ID", font=('Ubuntu Condensed', 75), fg="pink", bg="white")
         tokentitle.grid(row=2, column=0)
 
-        tokentitlep2 = tk.Label(self, text="to Receive Your Token", font=('Ubuntu Condensed', 100), fg="pink", bg="white")
+        tokentitlep2 = tk.Label(self, text="to Receive Your Token", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
         tokentitlep2.grid(row=3,column=0)
 
         b_home = tk.Button(self, text="HOME", highlightthickness=0, command=lambda: controller.show_frame(StartPage))
@@ -225,7 +225,7 @@ class ShopPage(tk.Frame):
         b_home = tk.Button(self, text="HOME", highlightthickness=0, command=lambda: controller.show_frame(StartPage), width=8)
         b_home.grid(row=0, column=6, sticky="ne")
 
-        item1img = PhotoImage(file='ClothesImages1024/greyblousere.png')
+        item1img = PhotoImage(file='ClothesImages1024/redtop.png')
         item1 = tk.Button(self, image=item1img, command=lambda: controller.show_frame(Item1Desc_1))
         item1.photo = item1img
         item1.grid(row=3,column=1)
@@ -295,34 +295,52 @@ class Item1Desc_1(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.configure(bg="white")
-        self.rowconfigure(5, weight=1)
-        self.columnconfigure(3, weight=1)
+        self.rowconfigure(6, weight=1)
+        self.columnconfigure(4, weight=1)
 
         item1title = tk.Label(self, text="RED FLORAL TUBE TOP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=1, columnspan=3)
+        item1title.grid(row=0, column=2, columnspan=3)
 	
-        fill1=LabelFrame(self, width=100, borderwidth=0, highlightthickness=0, bg="white")
-        fill1.grid(row=0, column=0)
+        L_img = PhotoImage(file='Images1024/arrowl.png')
+        R_img = PhotoImage(file='Images1024/arrowr.png')
+
+        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        L_but.photo=L_img
+        L_but.grid(row=2, column=1, rowspan=8)
 	
+        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        R_but.photo=R_img
+        R_but.grid(row=2, column=3, rowspan=8)
         #image = Image.open("ClothesImages/redtop.png")
         #resized = image.resize((500, 624))
 
         item1img1 = PhotoImage(file='ClothesImages1024/redtopdup.png')
-        item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
+        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
+        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
 
-        item1_list = [item1img1, item1img2, item1img3]
+        item1 = tk.Label(self, image=item1img1)
+        item1.photo = item1img1
+        item1.grid(row=1,column=2, rowspan=8)
 
-        item1 = tk.Label(self, image=item1_list[1])
-        item1.photo = item1_list[1]
-        item1.grid(row=2,column=1, columnspan=1)
+        info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 30), fg="pink", bg="white")
+        info.grid(row=1, column=4, rowspan=4, pady=25)
 
+        b_rent = tk.Button(self, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="black", activebackground="white", highlightthickness=0)
+        b_all = tk.Button(self, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="black", activebackground="white", highlightthickness=0)
+        b_rent.grid(row=5, column=4)
+        b_all.grid(row=6, column=4)
+
+        fillL=LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
+        fillL.grid(column=0)
+    
+        fillR=LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
+        fillR.grid(column=5)
+        
         
  
 
 app = startApp()
 app.attributes('-fullscreen', True)
-app.config(cursor="none")
+#app.config(cursor="none")
 #app.geometry("1920x1080") #enable this for demo
 app.mainloop()
-#test
