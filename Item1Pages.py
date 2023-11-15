@@ -1,7 +1,6 @@
 import tkinter as tk
 from Pages import *
 
-
 class Item1Desc_1(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)

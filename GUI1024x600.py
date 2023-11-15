@@ -3,6 +3,7 @@ import tkinter as tk
 import serial
 import SerialControl as Ser
 from Pages import *
+
 #from pykeyboard import PyKeyboard
 class startApp(tk.Tk):
     #startApp constructor
