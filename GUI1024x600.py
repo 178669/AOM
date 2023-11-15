@@ -536,7 +536,7 @@ class Item2Desc_3(tk.Frame):
         fillL.grid(column=0)  
         fillR=LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
         fillR.grid(column=5)
-
+#
 app = startApp()
 app.attributes('-fullscreen', True)
 #app.config(cursor="none")
