@@ -1,3 +1,8 @@
+from tkinter import *
+import tkinter as tk
+import time
+import serial
+#from test import StartPage
 def controlmotor():
     '''Motor Notes:
         - 10:1 Gear Ratio [Wood Gear]
@@ -15,7 +20,7 @@ def controlmotor():
     writeTimeout=5)
     alt = True
     try:
-        arduino.write("Counter".encode())
+        arduino.write("Counter3".encode())
         data = arduino.readline()
         if data:
             print(data)
@@ -25,26 +30,16 @@ def controlmotor():
     except Exception as e:
         print(e)
         arduino.close()
-items = [1, 2, 3, 4, 5, 6]
-#fucntion to determine if CW or CCW is faster
+#function to determine if CW or CCW is faster
+#assuming CW is associated with positive positional indicies
 def calc(filepath, target, max):
     file = open(filepath, "r")
     current = f.read()
-    
-    if (current == 5 && target == 1):
-        CW = true
-        return 1
+    CW=2
+    if abs(current - max - target) < abs(target - current):
+        CW = 1
+        return (CW, abs(current - max - target))
+    else:
+        CW = 0
+        return (CW, abs(target-current));
 
-    elif (current == 6 && target == 1)||(current == 6 && target ==2):
-        CW = true
-        return target
-
-    
-    if max - current >= 3:
-        CW = true
-        return max - current
-
-
-
-
-def 

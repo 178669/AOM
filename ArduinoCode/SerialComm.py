@@ -16,7 +16,7 @@ alt = True
 while True: 
 	if(alt == True):	
 		try:
-			arduino.write("Counter".encode())
+			arduino.write("Counter|".encode())
 			data = arduino.readline()
 			if data:
 				print(data)
@@ -28,7 +28,7 @@ while True:
 
 	if(alt == False):	
 		try:
-			arduino.write("Count".encode())
+			arduino.write("Count|".encode())
 			data = arduino.readline()
 			if data:
 				print(data)
