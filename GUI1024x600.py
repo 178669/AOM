@@ -323,5 +323,6 @@ class Item1Desc_1(tk.Frame):
 app = startApp()
 app.attributes('-fullscreen', True)
 app.config(cursor="none")
-app.geometry("1920x1080")
+#app.geometry("1920x1080") #enable this for demo
 app.mainloop()
+#test
