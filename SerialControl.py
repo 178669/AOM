@@ -20,8 +20,21 @@ def controlmotor(target, max):
     dsrdtr=False,
     writeTimeout=5)
     alt = True
-    CW, dist = calc(5, 5)
+    CW, dist = calc(target, max)
+    print(CW)
     print(dist)
+    if CW == 1:
+        try:
+            serwrite = "Counter{d}|".format(d = dist)
+            arduino.write(serwrite.encode())
+            data = arduino.readline()
+            if data:
+                print(data)
+            time.sleep(5)
+            #controller.show_frame(StartPage)
+        except Exception as e:
+            print(e)
+            arduino.close()
     if CW == 0:
         try:
             serwrite = "Counter{d}|".format(d = dist)
@@ -29,7 +42,6 @@ def controlmotor(target, max):
             data = arduino.readline()
             if data:
                 print(data)
-                alt = True
             time.sleep(5)
             #controller.show_frame(StartPage)
         except Exception as e:
@@ -39,6 +51,13 @@ def controlmotor(target, max):
 #assuming CW is associated with positive positional indicies
 
 def calc(target, max):
+    file = open("ArduinoCode/LastIndex.txt", "r")
+    current = int(file.read())
+    file.close()
+
+    file = open("ArduinoCode/LastIndex.txt", "w")
+    file.write(str(target))
+    CW = 2
     if current<=3 and target-current>3:
         CW = 0
         distance = abs(target-max)+current
