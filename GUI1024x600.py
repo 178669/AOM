@@ -57,7 +57,7 @@ writeTimeout=5)
 
 app = startApp()
 app.attributes('-fullscreen', True)#enable this for demo
-app.configure(cursor='none')
+#app.configure(cursor='none')
 app.after(1000,app.update())
 app.mainloop()
 

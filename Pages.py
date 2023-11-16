@@ -250,7 +250,7 @@ class Item1Desc_1(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: RAW DE\nSize: Medium \nDimensions: \nFits Like: Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -291,7 +291,7 @@ class Item1Desc_2(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: RAW DE\nSize: Medium \nDimensions: \nFits Like: Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -332,7 +332,7 @@ class Item1Desc_3(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: RAW DE\nSize: Medium \nDimensions: \nFits Like: Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -375,7 +375,7 @@ class Item2Desc_1(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -416,7 +416,7 @@ class Item2Desc_2(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -457,7 +457,7 @@ class Item2Desc_3(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -500,7 +500,7 @@ class Item3Desc_1(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: H&M\nSize: Small \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -541,7 +541,7 @@ class Item3Desc_2(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: H&M\nSize: Small \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -582,7 +582,7 @@ class Item3Desc_3(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: H&M\nSize: Small \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -623,7 +623,7 @@ class Item4Desc_1(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: AMERICAN EAGLE\nSize: Medium \nDimensions: \nFits Like: Medium/Large\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -664,7 +664,7 @@ class Item4Desc_2(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: AMERICAN EAGLE\nSize: Medium \nDimensions: \nFits Like: Medium/Large\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -705,7 +705,7 @@ class Item4Desc_3(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: AMERICAN EAGLE\nSize: Medium \nDimensions: \nFits Like: Medium/Large\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -746,7 +746,7 @@ class Item5Desc_1(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -787,7 +787,7 @@ class Item5Desc_2(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -828,7 +828,7 @@ class Item5Desc_3(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -870,7 +870,7 @@ class Item6Desc_1(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -911,7 +911,7 @@ class Item6Desc_2(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -952,7 +952,7 @@ class Item6Desc_3(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20)
+        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
