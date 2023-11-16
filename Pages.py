@@ -1,4 +1,5 @@
 import tkinter as tk
+import SerialControl as Ser
 
 class StartPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -17,8 +18,8 @@ class StartPage(tk.Frame):
         RENT_CLOTHES = tk.Label(self, text="TRADE CLOTHES", bg="white", fg="pink", font=('Ubuntu Condensed', 100))
         RENT_CLOTHES.grid(row=1, column=1)
 
-        #b_motor = tk.Button(self, command=lambda: Ser.controlmotor())
-        #b_motor.grid(row=4)
+        b_motor = tk.Button(self, command=lambda: Ser.controlmotor(1, 6))
+        b_motor.grid(row=4)
 	   
         fillL=tk.LabelFrame(self, width=110, borderwidth=0, highlightthickness=0, bg="white")
         fillL.grid(row=0)
@@ -152,7 +153,7 @@ class ShopPage(tk.Frame):
         b_home = tk.Button(self,image=homeimg, command=lambda: controller.show_frame(StartPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_home.image = homeimg
         b_home.grid(row=0, column=5, sticky="ne")
-        
+
         item1img = tk.PhotoImage(file='ClothesImages1024/redtop.png')
         item1 = tk.Button(self, image=item1img, command=lambda: controller.show_frame(Item1Desc_1))
         item1.photo = item1img
@@ -174,8 +175,10 @@ class ShopPage(tk.Frame):
         fill3=tk.LabelFrame(self, width=3, borderwidth=0, highlightthickness=0, bg="white")
         fill3.grid(row=3, column=2, rowspan=3)
 
-        b_next = tk.Button(self, text="Next Page", highlightthickness=0, command=lambda: controller.show_frame(ShopPage2))
-        b_next.grid(row=4, column=3, columnspan=1)
+        neximg = tk.PhotoImage(file='Images1024/b_next.png')
+        b_next = tk.Button(self, image=neximg, text="Next Page", command=lambda: controller.show_frame(ShopPage2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_next.photo = neximg
+        b_next.grid(row=4, column=3)
 
 class ShopPage2(tk.Frame):
     def __init__(self, parent, controller):
@@ -217,9 +220,10 @@ class ShopPage2(tk.Frame):
         fill3=tk.LabelFrame(self, width=3, borderwidth=0, highlightthickness=0, bg="white")
         fill3.grid(row=3, column=2, rowspan=3)
 
-        b_next = tk.Button(self, text="Next Page")
-        b_next.grid(row=4, column=3, columnspan=1)
-
+        backimg = tk.PhotoImage(file='Images1024/b_back.png')
+        b_back = tk.Button(self, image=backimg, text="Next Page", command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_back.photo = backimg
+        b_back.grid(row=4, column=3)
 #
 
 class Item1Desc_1(tk.Frame):
@@ -252,7 +256,7 @@ class Item1Desc_1(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -293,7 +297,7 @@ class Item1Desc_2(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -334,7 +338,7 @@ class Item1Desc_3(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -377,7 +381,7 @@ class Item2Desc_1(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -418,7 +422,7 @@ class Item2Desc_2(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -459,7 +463,7 @@ class Item2Desc_3(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -502,7 +506,7 @@ class Item3Desc_1(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -543,7 +547,7 @@ class Item3Desc_2(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -584,7 +588,7 @@ class Item3Desc_3(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -625,7 +629,7 @@ class Item4Desc_1(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -666,7 +670,7 @@ class Item4Desc_2(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -707,7 +711,7 @@ class Item4Desc_3(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -748,7 +752,7 @@ class Item5Desc_1(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -789,7 +793,7 @@ class Item5Desc_2(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -830,7 +834,7 @@ class Item5Desc_3(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -872,7 +876,7 @@ class Item6Desc_1(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -913,7 +917,7 @@ class Item6Desc_2(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
         b_rent.photo = rentimg
         b_all.photo = allimg
@@ -954,7 +958,7 @@ class Item6Desc_3(tk.Frame):
         info.grid(row=2, column=4, rowspan=3)
         rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
         allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
+        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
         b_rent.photo = rentimg
         b_all.photo = allimg

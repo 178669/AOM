@@ -42,7 +42,7 @@ def refresh(self):
     self.destroy()
     self.__init__()
     self.attributes('-fullscreen', True)
-'''
+
 arduino = serial.Serial(
 port='/dev/ttyUSB0',
 baudrate=9600,
@@ -54,8 +54,10 @@ xonxoff=False,
 rtscts=False,
 dsrdtr=False,
 writeTimeout=5)
-'''
+
 app = startApp()
 app.attributes('-fullscreen', True)#enable this for demo
+#app.configure(cursor='none')
+app.after(1000,app.update())
 app.mainloop()
 

@@ -2,9 +2,9 @@
 #include <Stepper.h>
 
 // Number of steps per output rotation
-//2000 steps for 10:1 gear rotation
+//400 steps for 2:1 gear rotation
 //6 equal size steps of 334
-const int stepsPerRevolution = 334;
+const int stepsPerRevolution = 67;
 
 // Create Instance of Stepper library
 Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11);
@@ -28,7 +28,7 @@ void loop()
   if(Serial.available() > 0)
   {
     String FromJetson = Serial.readStringUntil(TERMINATOR);
-    //Serial.print("Serial MSG: " + FromJetson);
+    Serial.print("Serial MSG: " + FromJetson);
     if(FromJetson == "Clock1")
       {//CCW when shaft pointing up
         Serial.println("CW Rotation 1: " + FromJetson);
