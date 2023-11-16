@@ -37,32 +37,23 @@ def controlmotor(target, max):
             arduino.close()
 #function to determine if CW or CCW is faster
 #assuming CW is associated with positive positional indicies
-def calc(target, max):
-    file = open("ArduinoCode/LastIndex.txt", "r")
-    current = int(file.read())#ra
-    file.close()
 
-    file = open("ArduinoCode/LastIndex.txt", "w")
-    save = str(target)
-    file.write(save)#update page
-    CW=2
-    if (abs(current - target) > 3) and current>3:
+def calc(target, max):
+    if current<=3 and target-current>3:
         CW = 0
-        dis = abs(abs(current - max) - target)
-        return (CW, dis)
-    elif (abs(current - target) > 3) and current<=3:
+        distance = abs(target-max)+current
+        return (CW, distance)
+
+    elif current>=3 and current-target>=3:
         CW = 1
-        dis = abs(abs(current - max) - target)
-        return (CW, dis)
+        distance = abs(current-max)+target
+        return (CW, distance)
     else:
-        CW = 1
-        dis = target - current
-        return (CW, dis)
-    '''
-    if abs(abs(current - max) - target) < abs(target - current):
-        CW = 1
-        return (CW, abs(abs(current - max) - target))
-    else:
-        CW = 0
-        return (CW, abs(target-current));
-    '''
+        distance = target - current
+        if distance>0:
+            CW = 1
+            return (CW, distance)
+        if distance<0:
+            CW = 0
+            return (CW, abs(distance))
+        return (CW, distance)
