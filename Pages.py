@@ -1,6 +1,33 @@
 import tkinter as tk
 import SerialControl as Ser
 
+
+def shopsel1(controller):
+    controller.show_frame(Item1Desc_1)
+    Ser.controlmotor(1, 6)
+
+def shopsel2(controller):
+    controller.show_frame(Item1Desc_1)
+    Ser.controlmotor(2, 6)
+
+def shopsel3(controller):
+    controller.show_frame(Item1Desc_1)
+    Ser.controlmotor(3, 6)
+
+def shopsel4(controller):
+    controller.show_frame(Item1Desc_1)
+    Ser.controlmotor(4, 6)
+
+def shopsel5(controller):
+    controller.show_frame(Item1Desc_1)
+    Ser.controlmotor(5, 6)
+
+def shopsel6(controller):
+    controller.show_frame(Item1Desc_1)
+    Ser.controlmotor(6, 6)
+
+
+
 class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -18,8 +45,8 @@ class StartPage(tk.Frame):
         RENT_CLOTHES = tk.Label(self, text="TRADE CLOTHES", bg="white", fg="pink", font=('Ubuntu Condensed', 100))
         RENT_CLOTHES.grid(row=1, column=1)
 
-        b_motor = tk.Button(self, command=lambda: Ser.controlmotor(1, 6))
-        b_motor.grid(row=4)
+        #b_motor = tk.Button(self, command=lambda: Ser.controlmotor(5, 6))
+        #b_motor.grid(row=4)
 	   
         fillL=tk.LabelFrame(self, width=110, borderwidth=0, highlightthickness=0, bg="white")
         fillL.grid(row=0)
@@ -155,17 +182,17 @@ class ShopPage(tk.Frame):
         b_home.grid(row=0, column=5, sticky="ne")
 
         item1img = tk.PhotoImage(file='ClothesImages1024/redtop.png')
-        item1 = tk.Button(self, image=item1img, command=lambda: controller.show_frame(Item1Desc_1))
+        item1 = tk.Button(self, image=item1img, command=lambda: shopsel1(controller))
         item1.photo = item1img
         item1.grid(row=3,column=1)
 
         item2img = tk.PhotoImage(file='ClothesImages1024/redtop.png')
-        item2 = tk.Button(self, image=item2img, command=lambda: controller.show_frame(Item2Desc_1))
+        item2 = tk.Button(self, image=item2img, command=lambda: shopsel2(controller))
         item2.photo = item2img
         item2.grid(row=3,column=3)
 
         item3img = tk.PhotoImage(file='ClothesImages1024/blackdress.png')
-        item3 = tk.Button(self, image=item3img, command=lambda: controller.show_frame(Item3Desc_1))
+        item3 = tk.Button(self, image=item3img, command=lambda: shopsel3(controller))
         item3.photo = item3img
         item3.grid(row=3,column=4)
 
@@ -200,17 +227,17 @@ class ShopPage2(tk.Frame):
         b_home.grid(row=0, column=5, sticky="ne")
 
         item1img = tk.PhotoImage(file='ClothesImages1024/blueblouse.png')
-        item1 = tk.Button(self, image=item1img, command=lambda: controller.show_frame(Item4Desc_1))
+        item1 = tk.Button(self, image=item1img, command=lambda: shopsel4(controller))
         item1.photo = item1img
         item1.grid(row=3,column=1)
 
         item2img = tk.PhotoImage(file='ClothesImages1024/purpletop.png')
-        item2 = tk.Button(self, image=item2img, command=lambda: controller.show_frame(Item5Desc_1))
+        item2 = tk.Button(self, image=item2img, command=lambda: shopsel5(controller))
         item2.photo = item2img
         item2.grid(row=3,column=3)
 
         item3img = tk.PhotoImage(file='ClothesImages1024/furjacket.png')
-        item3 = tk.Button(self, image=item3img, command=lambda: controller.show_frame(Item6Desc_1))
+        item3 = tk.Button(self, image=item3img, command=lambda: shopsel6(controller))
         item3.photo = item3img
         item3.grid(row=3,column=4)
 
