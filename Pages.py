@@ -18,8 +18,8 @@ class StartPage(tk.Frame):
         RENT_CLOTHES = tk.Label(self, text="TRADE CLOTHES", bg="white", fg="pink", font=('Ubuntu Condensed', 100))
         RENT_CLOTHES.grid(row=1, column=1)
 
-        b_motor = tk.Button(self, command=lambda: Ser.controlmotor(1, 6))
-        b_motor.grid(row=4)
+        #b_motor = tk.Button(self, command=lambda: Ser.controlmotor(1, 6))
+        #b_motor.grid(row=4)
 	   
         fillL=tk.LabelFrame(self, width=110, borderwidth=0, highlightthickness=0, bg="white")
         fillL.grid(row=0)
