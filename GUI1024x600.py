@@ -1,6 +1,6 @@
 from tkinter import *
 import tkinter as tk
-#import serial
+import serial
 import SerialControl as Ser
 from Pages import *
 
