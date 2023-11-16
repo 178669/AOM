@@ -822,7 +822,7 @@ class Item5Desc_3(tk.Frame):
         R_but.grid(row=1, column=3, rowspan=8)
         #image = Image.open("ClothesImages/redtop.png")
         #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item5/Desc.png)
+        item1img1 = tk.PhotoImage(file='Item5/Desc.png')
         #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
         #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
         item1 = tk.Label(self, image=item1img1)
