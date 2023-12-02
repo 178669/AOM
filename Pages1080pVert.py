@@ -2,46 +2,65 @@ import tkinter as tk
 import SerialControl as Ser
 
 s = 1.55 # s for scale
+'''
 class StartPage(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.configure(bg="white")
-        self.rowconfigure(3, minsize=0, weight=0)
-        self.rowconfigure(0, minsize=0, weight=1)
-        self.rowconfigure(6, minsize=0, weight=1)
-        self.columnconfigure(3, minsize=0, weight=0) 
-
-        b_startimg = tk.PhotoImage(file='Images1024/b_pink.png')
-
-        
-        fillL=tk.LabelFrame(self, width=int(55*s), borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(row=0)
-
-        fillT=tk.LabelFrame(self, borderwidth=0, highlightthickness=0, bg="white")
-        fillT.grid(row=0)
-        
-        WELCOME = tk.Label(self, text="Welcome", bg="white", fg="pink", font=('Ubuntu Condensed', int(150*s)))
-        WELCOME.grid(row=1,rowspan=2 ,column=0, columnspan=3)
-        RENT_CLOTHES = tk.Label(self, text="to the", bg="white", fg="pink", font=('Ubuntu Condensed', int(100*s)))
-        RENT_CLOTHES.grid(row=3, column=0, columnspan=3)
-        
-        NAME = tk.Label(self, text="Clothing \n    Library", bg="white", fg="pink", font=('Ubuntu Condensed', int(125*s)))
-        NAME.grid(row=4,rowspan=2, column=0, columnspan=3)
-        #b_motor = tk.Button(self, command=lambda: Ser.controlmotor(1, 6))
-        #b_motor.grid(row=4)
-
+        self.rowconfigure(0, weight=1)
+    
+        b_startimg = tk.PhotoImage(file='Images/b_start.png')
 
         
         #b_start = tk.Button(self, text="Start a Trade", width=200, command=lambda:controller.show_frame(Page1))
-        b_start = tk.Button(self, image=b_startimg, command=lambda: controller.show_frame(ChoicePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_start.photo = b_startimg
-        b_start.grid(row=6, column=1)
+        titleimg = tk.PhotoImage(file='Images/StartTitle.png')
+        title = tk.Label(self, image=titleimg, borderwidth=0)
+        title.photo=titleimg
+        title.grid(row=1, column=0)
         
-        fillB=tk.LabelFrame(self, borderwidth=0, highlightthickness=0, bg="white")
-        fillB.grid(row=7)
+        b_start = tk.Button(self, image=b_startimg, command=lambda: controller.show_frame(ChoicePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0, bd=0, pady=0, padx=0, height=100)
+        b_start.photo = b_startimg
+        b_start.grid(row=3, column=0)
+        
+        cloudimg = tk.PhotoImage(file='Images/Clouds.png')
+        cloud = tk.Label(self, image=cloudimg, borderwidth=0)
+        cloud.photo=cloudimg
+        cloud.grid(row=5, column=0)
+        
+        fillT=tk.LabelFrame(self, height=100, borderwidth=0, highlightthickness=0, bg="white")
+        fillT.grid(row=0)
+        fill1=tk.LabelFrame(self, height=100, borderwidth=0, highlightthickness=0, bg="white")
+        fill1.grid(row=4)
+        fill2=tk.LabelFrame(self, height=50, borderwidth=0, highlightthickness=0, bg="white")
+        fill2.grid(row=2)
+'''
+class StartPage(tk.Frame):
 
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.configure(bg="white")
+        self.rowconfigure(0, weight=1)
+    
+        b_startimg = tk.PhotoImage(file='Images/pgone2.png')
 
+        
+        #b_start = tk.Button(self, text="Start a Trade", width=200, command=lambda:controller.show_frame(Page1))
+        titleimg = tk.PhotoImage(file='Images/pgone1.png')
+        title = tk.Label(self, image=titleimg, borderwidth=0, highlightthickness=0)
+        title.photo=titleimg
+        title.grid(row=1, column=0)
+        
+        b_start = tk.Button(self, image=b_startimg, command=lambda: controller.show_frame(ChoicePage), borderwidth=0, highlightthickness=0, bd=0, pady=0, padx=0, height=473)
+        b_start.photo = b_startimg
+        b_start.grid(row=2, column=0)
+        
+        cloudimg = tk.PhotoImage(file='Images/pgone3.png')
+        cloud = tk.Label(self, image=cloudimg, borderwidth=0, highlightthickness=0)
+        cloud.photo=cloudimg
+        cloud.grid(row=3, column=0)
+
+'''
 class ChoicePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -94,6 +113,42 @@ class ChoicePage(tk.Frame):
         b_trade.grid(row=5, column=2, columnspan=3)
         tradelabel = tk.Label(self, text= "Once you are done wearing your item, redonate it and take another", font=('Ubuntu Condensed', int(20*s)), justify="center", bg="white")
         tradelabel.grid(row=6, column=2, columnspan=3)
+'''
+class ChoicePage(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.configure(bg="white")
+        #self.rowconfigure(6, minsize=int(50*s), weight=0)
+        #self.columnconfigure(3, minsize=int(270*s), weight=0)  # weight allows for resizing
+        
+        frag1img = tk.PhotoImage(file='Images/choicepg1.png')
+        b_donateimg = tk.PhotoImage(file='Images/choicepg2.png')
+        frag3img = tk.PhotoImage(file='Images/choicepg3.png')
+        b_shopimg = tk.PhotoImage(file='Images/choicepg4.png')
+        frag5img = tk.PhotoImage(file='Images/choicepg5.png')
+
+        frag1 = tk.Label(self, image=frag1img, borderwidth=0)
+        frag3 = tk.Label(self, image=frag3img, borderwidth=0) 
+        frag5 = tk.Label(self, image=frag5img, borderwidth=0)
+
+        frag1.photo=frag1img
+        frag3.photo=frag3img
+        frag5.photo=frag5img
+
+        frag1.grid(row=1)
+        frag3.grid(row=3)
+        frag5.grid(row=5)
+
+        b_donate = tk.Button(self, image=b_donateimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0, height=264)
+        b_donate.photo = b_donateimg
+        b_donate.grid(row=2)
+
+        b_shop = tk.Button(self, image=b_shopimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0, height=261)
+        b_shop.photo = b_shopimg
+        b_shop.grid(row=4)
+
+
+
 
 class DonatePage(tk.Frame):
     def __init__(self, parent, controller):
