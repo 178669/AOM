@@ -3,6 +3,7 @@ import tkinter as tk
 import serial
 import SerialControl as Ser
 from Pages1080pVert import *
+from playsound import playsound
 
 #from pykeyboard import PyKeyboard
 class startApp(tk.Tk):
@@ -35,13 +36,11 @@ class startApp(tk.Tk):
 
     #displays current frame passed as input
     def show_frame(self, cont):
+        playsound('Drip.mp3')
         frame = self.frames[cont]
         frame.tkraise()
+        
 
-def refresh(self):
-    self.destroy()
-    self.__init__()
-    self.attributes('-fullscreen', True)
 
 arduino = serial.Serial(
 port='/dev/ttyUSB0',
@@ -58,6 +57,5 @@ writeTimeout=5)
 app = startApp()
 app.attributes('-fullscreen', True)#enable this for demo
 #app.configure(cursor='none')
-app.after(1000,app.update())
 app.mainloop()
 
