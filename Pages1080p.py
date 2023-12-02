@@ -17,16 +17,16 @@ class StartPage(tk.Frame):
         b_start.photo = b_startimg
         b_start.grid(row=2, column=1, sticky="nsew")
 
-        RENT_CLOTHES = tk.Label(self, text="TRADE CLOTHES", bg="white", fg="pink", font=('Ubuntu Condensed', 100*s))
+        RENT_CLOTHES = tk.Label(self, text="TRADE CLOTHES", bg="white", fg="pink", font=('Ubuntu Condensed', int(100*s)))
         RENT_CLOTHES.grid(row=1, column=1)
 
         #b_motor = tk.Button(self, command=lambda: Ser.controlmotor(1, 6))
         #b_motor.grid(row=4)
 
-        fillL=tk.LabelFrame(self, width=110*s, borderwidth=0, highlightthickness=0, bg="white")
+        fillL=tk.LabelFrame(self, width=int(110*s), borderwidth=0, highlightthickness=0, bg="white")
         fillL.grid(row=0)
 
-        fillT=tk.LabelFrame(self, height=100*s, borderwidth=0, highlightthickness=0, bg="white")
+        fillT=tk.LabelFrame(self, height=int(100*s), borderwidth=0, highlightthickness=0, bg="white")
         fillT.grid(row=0)
 
 
@@ -34,8 +34,8 @@ class ChoicePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.configure(bg="white")
-        self.rowconfigure(6, minsize=50*s, weight=0)
-        self.columnconfigure(3, minsize=270*s, weight=0)  # weight allows for resizing
+        self.rowconfigure(6, minsize=int(50*s), weight=0)
+        self.columnconfigure(3, minsize=int(270*s), weight=0)  # weight allows for resizing
 
         b_donateimg = tk.PhotoImage(file='Images1024/b_donate.png')
         b_shopimg = tk.PhotoImage(file='Images1024/b_shop.png')
@@ -57,10 +57,10 @@ class ChoicePage(tk.Frame):
         imglab2.grid(row=3, column=1, columnspan=2)
         imglab3.grid(row=5, column=1, columnspan=2)
 
-        title=tk.Label(self, height=1, highlightthickness=0, borderwidth=0,fg="pink", bg="white", text="SELECT AN OPTION", font=('Ubuntu Condensed', 60*s))
+        title=tk.Label(self, height=1, highlightthickness=0, borderwidth=0,fg="pink", bg="white", text="SELECT AN OPTION", font=('Ubuntu Condensed', int(60*s)))
         title.grid(row=0, column=2, columnspan=3)
 
-        fillL=tk.LabelFrame(self, width=180*s, borderwidth=0, highlightthickness=0, bg="white")
+        fillL=tk.LabelFrame(self, width=int(180*s), borderwidth=0, highlightthickness=0, bg="white")
         fillL.grid(column=0)
         #fill3=LabelFrame(self, width=50, borderwidth=0, highlightthickness=0, bg="white")
         #fill3.grid(row=0, column=2)
@@ -68,19 +68,19 @@ class ChoicePage(tk.Frame):
         b_donate = tk.Button(self, image=b_donateimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_donate.photo = b_donateimg
         b_donate.grid(row=1, column=2, columnspan=3)
-        donatelabel = tk.Label(self,text= "Donate washed clothing items to the bin below. \nGain 1 Shop Credit per Item.", font=('Ubuntu Condensed', 20*s), justify="center", bg="white")
+        donatelabel = tk.Label(self,text= "Donate washed clothing items to the bin below. \nGain 1 Shop Credit per Item.", font=('Ubuntu Condensed', int(20*s)), justify="center", bg="white")
         donatelabel.grid(row=2, column=2, columnspan=3)
 
         b_shop = tk.Button(self, image=b_shopimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_shop.photo = b_shopimg
         b_shop.grid(row=3, column=2, columnspan=3)
-        shoplabel = tk.Label(self, text= "Browse through our washed clothes and select one to rent. \nPick up your item at the Clothing Collection Window", font=('Ubuntu Condensed', 20*s), justify="center", bg="white", highlightthickness=0)
+        shoplabel = tk.Label(self, text= "Browse through our washed clothes and select one to rent. \nPick up your item at the Clothing Collection Window", font=('Ubuntu Condensed', int(20*s)), justify="center", bg="white", highlightthickness=0)
         shoplabel.grid(row=4, column=2, columnspan=3)
 
         b_trade = tk.Button(self, image=b_tradeimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
         b_trade.photo = b_tradeimg
         b_trade.grid(row=5, column=2, columnspan=3)
-        tradelabel = tk.Label(self, text= "Once you are done wearing your item, redonate it and take another", font=('Ubuntu Condensed', 20*s), justify="center", bg="white")
+        tradelabel = tk.Label(self, text= "Once you are done wearing your item, redonate it and take another", font=('Ubuntu Condensed', int(20*s)), justify="center", bg="white")
         tradelabel.grid(row=6, column=2, columnspan=3)
 
 class DonatePage(tk.Frame):
@@ -95,10 +95,10 @@ class DonatePage(tk.Frame):
         b_home.image = homeimg
         b_home.grid(row=0, column=0, sticky="ne")
 
-        donatetitle = tk.Label(self, text="DONATE", font=('Ubuntu Condensed', 132*s), fg="pink", bg="white")
+        donatetitle = tk.Label(self, text="DONATE", font=('Ubuntu Condensed', int(132*s)), fg="pink", bg="white")
         donatetitle.grid(row=0, column=0)
 
-        donatetext = tk.Label(self, text="Place Item In Donation Box Below", font=('Ubuntu Condensed',50*s), fg="red", bg="white")
+        donatetext = tk.Label(self, text="Place Item In Donation Box Below", font=('Ubuntu Condensed',int(50*s)), fg="red", bg="white")
         donatetext.grid(row=1,column=0)
 
         """
@@ -123,13 +123,13 @@ class TokenPage(tk.Frame):
         self.rowconfigure(5, weight=1)
         self.columnconfigure(0, weight=1)
 
-        fill1=tk.LabelFrame(self, height=100*s, borderwidth=0, highlightthickness=0, bg="white")
+        fill1=tk.LabelFrame(self, height=int(100*s), borderwidth=0, highlightthickness=0, bg="white")
         fill1.grid(row=0, column=0)
 
-        tokentitle = tk.Label(self, text="Please Tap Your ID", font=('Ubuntu Condensed', 75*s), fg="pink", bg="white")
+        tokentitle = tk.Label(self, text="Please Tap Your ID", font=('Ubuntu Condensed', int(75*s)), fg="pink", bg="white")
         tokentitle.grid(row=2, column=0)
 
-        tokentitlep2 = tk.Label(self, text="to Receive Your Token", font=('Ubuntu Condensed', 50*s), fg="pink", bg="white")
+        tokentitlep2 = tk.Label(self, text="to Receive Your Token", font=('Ubuntu Condensed', int(50*s)), fg="pink", bg="white")
         tokentitlep2.grid(row=3,column=0)
 
         homeimg = tk.PhotoImage(file='Images1024/homebutton.png')
@@ -147,7 +147,7 @@ class ShopPage(tk.Frame):
         fill1=tk.LabelFrame(self, height=1, borderwidth=0, highlightthickness=0, bg="white")
         fill1.grid(row=0, column=0)
 
-        tokentitle = tk.Label(self, text="SHOP", font=('Ubuntu Condensed', 100*s), fg="pink", bg="white")
+        tokentitle = tk.Label(self, text="SHOP", font=('Ubuntu Condensed', int(100*s)), fg="pink", bg="white")
         tokentitle.grid(row=0, column=2, columnspan=2)
 
         
@@ -192,7 +192,7 @@ class ShopPage2(tk.Frame):
         fill1=tk.LabelFrame(self, height=2, borderwidth=0, highlightthickness=0, bg="white")
         fill1.grid(row=0, column=0)
 
-        shoptitle = tk.Label(self, text="SHOP", font=('Ubuntu Condensed', 100*s), fg="pink", bg="white")
+        shoptitle = tk.Label(self, text="SHOP", font=('Ubuntu Condensed', int(100*s)), fg="pink", bg="white")
         shoptitle.grid(row=0, column=2, columnspan=2)
 
         
@@ -216,7 +216,7 @@ class ShopPage2(tk.Frame):
         item3.photo = item3img
         item3.grid(row=3,column=4)
 
-        fill2=tk.LabelFrame(self, width=80*s, borderwidth=0, highlightthickness=0, bg="white")
+        fill2=tk.LabelFrame(self, width=int(80*s), borderwidth=0, highlightthickness=0, bg="white")
         fill2.grid(row=0, column=0, rowspan=3)
 
         fill3=tk.LabelFrame(self, width=3, borderwidth=0, highlightthickness=0, bg="white")
@@ -234,7 +234,7 @@ class Item1Desc_1(tk.Frame):
         self.configure(bg="white")
         self.rowconfigure(6, weight=1)
         self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="B/W STRIPED BUTTON UP", font=('Ubuntu Condensed', 50*s), fg="pink", bg="white")
+        item1title = tk.Label(self, text="B/W STRIPED BUTTON UP", font=('Ubuntu Condensed', int(50*s)), fg="pink", bg="white")
         item1title.grid(row=0, column=2, columnspan=3)
         L_img = tk.PhotoImage(file='Images1024/arrowl.png')
         R_img = tk.PhotoImage(file='Images1024/arrowr.png')
@@ -252,7 +252,7 @@ class Item1Desc_1(tk.Frame):
         item1 = tk.Label(self, image=item1img1)
         item1.photo = item1img1
         item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20*s, borderwidth=0, bg="white", highlightthickness=0)
+        filltopinfo = tk.LabelFrame(self, height=int(20*s), borderwidth=0, bg="white", highlightthickness=0)
         filltopinfo.grid(row=1, column=4)
         info = tk.Label(self, text="Brand: RAW DE\nSize: Medium \nDimensions: \nFits Like: Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
         info.grid(row=2, column=4, rowspan=3)
@@ -266,7 +266,7 @@ class Item1Desc_1(tk.Frame):
         b_all.grid(row=6, column=4)
         fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
         fillL.grid(column=0)
-        fillR=tk.LabelFrame(self, width=40*s, borderwidth=0, highlightthickness=0, bg="white")
+        fillR=tk.LabelFrame(self, width=int(40*s), borderwidth=0, highlightthickness=0, bg="white")
         fillR.grid(column=5)
         
 class Item1Desc_2(tk.Frame):
