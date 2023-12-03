@@ -154,34 +154,17 @@ class DonatePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(0, weight=1)
+        donateTimg = tk.PhotoImage(file='Images/donate1.png')
+        b_doneimg = tk.PhotoImage(file='Images/donate2.png')
+        
+        donateT = tk.Label(self, image=donateTimg, borderwidth=0)
+        b_done = tk.Button(self, image=b_doneimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0, height=372)
+        donateT.photo = donateTimg
+        b_done.photo = b_doneimg
+        
+        donateT.grid(row=0)
+        b_done.grid(row=1)
 
-        homeimg = tk.PhotoImage(file='Images1024/homebutton.png')
-        b_home = tk.Button(self,image=homeimg, command=lambda: controller.show_frame(StartPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_home.image = homeimg
-        b_home.grid(row=0, column=0, sticky="ne")
-
-        donatetitle = tk.Label(self, text="DONATE", font=('Ubuntu Condensed', int(132*s)), fg="pink", bg="white")
-        donatetitle.grid(row=0, column=0)
-
-        donatetext = tk.Label(self, text="Place Item In Donation Box Below", font=('Ubuntu Condensed',int(50*s)), fg="red", bg="white")
-        donatetext.grid(row=1,column=0)
-
-        """
-        fill1=LabelFrame(self, height=30)
-        fill1.grid(row=5, column=0)
-        """
-
-        arrimg = tk.PhotoImage(file='Images1024/downarrow.png')
-        arrlab = tk.Label(self, image=arrimg, bg="white", borderwidth=0, highlightthickness=0)
-        arrlab.photo = arrimg
-        arrlab.grid(row=4, column=0)
-
-        doneimg = tk.PhotoImage(file='Images1024/b_done.png')
-        b_done = tk.Button(self, image=doneimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_done.photo = doneimg
-        b_done.grid(row=6, column=0)
 
 class TokenPage(tk.Frame):
     def __init__(self, parent, controller):
