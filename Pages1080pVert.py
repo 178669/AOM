@@ -148,8 +148,6 @@ class ChoicePage(tk.Frame):
         b_shop.grid(row=4)
 
 
-
-
 class DonatePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -164,28 +162,43 @@ class DonatePage(tk.Frame):
         
         donateT.grid(row=0)
         b_done.grid(row=1)
+        
+        
 
 
 class TokenPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.configure(bg="white")
-        self.rowconfigure(5, weight=1)
-        self.columnconfigure(0, weight=1)
+        self.rowconfigure(2, weight=1)
 
-        fill1=tk.LabelFrame(self, height=int(100*s), borderwidth=0, highlightthickness=0, bg="white")
-        fill1.grid(row=0, column=0)
 
-        tokentitle = tk.Label(self, text="Please Tap Your ID", font=('Ubuntu Condensed', int(75*s)), fg="pink", bg="white")
-        tokentitle.grid(row=2, column=0)
+        token1img = tk.PhotoImage(file='Images/token1.png')
+        b_doneimg = tk.PhotoImage(file='Images/token3.png')
+        token2img = tk.PhotoImage(file='Images/token2.png')
 
-        tokentitlep2 = tk.Label(self, text="to Receive Your Token", font=('Ubuntu Condensed', int(50*s)), fg="pink", bg="white")
-        tokentitlep2.grid(row=3,column=0)
+        token1 = tk.Label(self, image=token1img, borderwidth=0)
+        b_done = tk.Button(self, image=b_doneimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0, height=386)
+        token2 = tk.Label(self, image=token2img, borderwidth=0)
+        token1.photo = token1img
+        b_done.photo = b_doneimg
+        token2.photo = token2img
+        token1.grid(row=0)
+        token2.grid(row=1)
+        
+        self.canvas = tk.Canvas(self,width=600, height=693, borderwidth=0, bg="white", highlightthickness=0)
+        self.canvas.grid(row=1, sticky='n')
 
-        homeimg = tk.PhotoImage(file='Images1024/homebutton.png')
-        b_home = tk.Button(self,image=homeimg, command=lambda: controller.show_frame(StartPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_home.image = homeimg
-        b_home.grid(row=0, column=0, sticky="ne")
+        # images
+        self.my_images = []
+        self.my_images.append(tk.PhotoImage(file="Images/NFCGIF.gif"))
+
+        self.my_image_number = 0
+
+        # set first image on canvas
+        self.image_on_canvas = self.canvas.create_image(300, 353, image=self.my_images[self.my_image_number])
+        b_done.grid(row=2)
+
 
 class ShopPage(tk.Frame):
     def __init__(self, parent, controller):

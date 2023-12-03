@@ -31,7 +31,7 @@ class startApp(tk.Tk):
             Item6Desc_1, Item6Desc_2, Item6Desc_3):
             frame = F(container, self)
             self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky="nsew")
+            frame.grid(row=0, column=0, sticky="nw")
         self.show_frame(StartPage)
 
     #displays current frame passed as input
