@@ -30,3 +30,10 @@ def onButton(self):
 
     # change image
     self.canvas.itemconfig(self.image_on_canvas, image=self.my_images[self.my_image_number])
+
+def animate(self):
+    if self._image_id is None:
+        self._image_id = self.display.create_image(...)
+    else:
+        self.itemconfig(self._image_id, image= the_new_image)
+    self.display.after(self.gif["delay"],
