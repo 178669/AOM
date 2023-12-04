@@ -1,5 +1,7 @@
 import tkinter as tk
 import SerialControl as Ser
+from PIL import Image, ImageTk
+from itertools import count, cycle
 
 s = 1.55 # s for scale
 '''
@@ -164,7 +166,38 @@ class DonatePage(tk.Frame):
         b_done.grid(row=1)
         
         
-
+class ImageLabel(tk.Label):
+    """
+    A Label that displays images, and plays them if they are gifs
+    :im: A PIL Image instance or a string filename
+    """
+    def load(self, im):
+        if isinstance(im, str):
+            im = Image.open(im)
+        frames = []
+        try:
+            for i in count(1):
+                frames.append(ImageTk.PhotoImage(im.copy()))
+                im.seek(i)
+        except EOFError:
+            pass
+        self.frames = cycle(frames)
+        try:
+            self.delay = im.info['duration']
+        except:
+            self.delay = 100
+        if len(frames) == 1:
+            self.config(image=next(self.frames))
+        else:
+            self.next_frame()
+    def unload(self):
+        self.config(image=None)
+        self.frames = None
+    def next_frame(self):
+        if self.frames:
+            self.config(image=next(self.frames))
+            self.after(self.delay, self.next_frame)
+    
 
 class TokenPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -178,7 +211,7 @@ class TokenPage(tk.Frame):
         token2img = tk.PhotoImage(file='Images/token2.png')
 
         token1 = tk.Label(self, image=token1img, borderwidth=0)
-        b_done = tk.Button(self, image=b_doneimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0, height=386)
+        b_done = tk.Button(self, image=b_doneimg, command=lambda: controller.show_frame(ChoicePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0, height=386)
         token2 = tk.Label(self, image=token2img, borderwidth=0)
         token1.photo = token1img
         b_done.photo = b_doneimg
@@ -186,20 +219,22 @@ class TokenPage(tk.Frame):
         token1.grid(row=0)
         token2.grid(row=1)
         
-        self.canvas = tk.Canvas(self,width=600, height=693, borderwidth=0, bg="white", highlightthickness=0)
-        self.canvas.grid(row=1, sticky='n')
-
-        # images
-        self.my_images = []
-        self.my_images.append(tk.PhotoImage(file="Images/NFCGIF.gif"))
-
-        self.my_image_number = 0
-
+        b_homeimg = tk.PhotoImage(file='Images/b_home.png')
+        b_home = tk.Button(self, image=b_homeimg,borderwidth=0, highlightthickness=0, width = 141, height = 137,command=lambda: controller.show_frame(StartPage))
+        b_home.photo = b_homeimg
+        b_home.grid(row=0, sticky='ne')
+        #GIF.grid(row=1)
+        #GIF.lift()
+        
+        lbl = ImageLabel(self, borderwidth=0, highlightthickness=0)
+        lbl.grid(row=1)
+        lbl.load('Images/NFCGIF.gif')
+    
         # set first image on canvas
-        self.image_on_canvas = self.canvas.create_image(300, 353, image=self.my_images[self.my_image_number])
+        #self.image_on_canvas = self.canvas.create_image(300, 353, image=self.my_images[self.my_image_number])
         b_done.grid(row=2)
-
-
+        
+        
 class ShopPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
