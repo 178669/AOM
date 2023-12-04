@@ -239,47 +239,25 @@ class ShopPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.configure(bg="white")
-        self.rowconfigure(5, weight=1)
-        self.columnconfigure(3, weight=1)
+        self.rowconfigure(0, minsize=336)
+        self.rowconfigure(4, minsize=182)
+        
+        self.rowconfigure(1, weight = 1)
+        self.rowconfigure(2, weight = 1)
+        self.rowconfigure(3, weight = 1)
 
-        fill1=tk.LabelFrame(self, height=1, borderwidth=0, highlightthickness=0, bg="white")
-        fill1.grid(row=0, column=0)
-
-        tokentitle = tk.Label(self, text="SHOP", font=('Ubuntu Condensed', int(100*s)), fg="pink", bg="white")
-        tokentitle.grid(row=0, column=2, columnspan=2)
+        self.columnconfigure(0, weight = 1)
+        self.columnconfigure(1, weight = 1)
+        self.columnconfigure(2, weight = 1)
 
         
-        homeimg = tk.PhotoImage(file='Images1024/homebutton.png')
-        b_home = tk.Button(self,image=homeimg, command=lambda: controller.show_frame(StartPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_home.image = homeimg
-        b_home.grid(row=0, column=5, sticky="ne")
 
-        item1img = tk.PhotoImage(file='Item1/Shop.png')
-        item1 = tk.Button(self, image=item1img, command=lambda: controller.show_frame(Item1Desc_1))
-        item1.photo = item1img
-        item1.grid(row=3,column=1)
-
-        item2img = tk.PhotoImage(file='Item2/Shop.png')
-        item2 = tk.Button(self, image=item2img, command=lambda: controller.show_frame(Item2Desc_1))
-        item2.photo = item2img
-        item2.grid(row=3,column=3)
-
-        item3img = tk.PhotoImage(file='Item3/Shop.png')
-        item3 = tk.Button(self, image=item3img, command=lambda: controller.show_frame(Item3Desc_1))
-        item3.photo = item3img
-        item3.grid(row=3,column=4)
-
-        fill2=tk.LabelFrame(self, width=80, borderwidth=0, highlightthickness=0, bg="white")
-        fill2.grid(row=0, column=0, rowspan=3)
-
-        fill3=tk.LabelFrame(self, width=3, borderwidth=0, highlightthickness=0, bg="white")
-        fill3.grid(row=3, column=2, rowspan=3)
-
-        neximg = tk.PhotoImage(file='Images1024/b_next.png')
-        b_next = tk.Button(self, image=neximg, text="Next Page", command=lambda: controller.show_frame(ShopPage2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_next.photo = neximg
-        b_next.grid(row=4, column=3)
-
+        baseimg = tk.PhotoImage(file='Images/shop.png')
+        base = tk.Label(self, image=baseimg, borderwidth=0)
+        base.grid(row=0, rowspan=5, columnspan=3)
+        
+        
+    '''
 class ShopPage2(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -325,7 +303,7 @@ class ShopPage2(tk.Frame):
         b_back.photo = backimg
         b_back.grid(row=4, column=3)
 #
-
+        '''
 class Item1Desc_1(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
