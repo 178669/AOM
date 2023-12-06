@@ -239,6 +239,9 @@ class ShopPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.configure(bg="white")
+        
+        Avail = [1, 1, 1, 1, 1, 0, 0, 0, 0]
+
         self.rowconfigure(0, minsize=336)
         self.rowconfigure(4, minsize=182)
         
@@ -249,800 +252,122 @@ class ShopPage(tk.Frame):
         self.columnconfigure(0, weight = 1)
         self.columnconfigure(1, weight = 1)
         self.columnconfigure(2, weight = 1)
-
         
-
-        baseimg = tk.PhotoImage(file='Images/shop.png')
+        baseimg = tk.PhotoImage(file='Images/ShopPage.png')
         base = tk.Label(self, image=baseimg, borderwidth=0)
-        base.grid(row=0, rowspan=5, columnspan=3)
+        base.photo = baseimg
+        base.grid(row=0, column=0, rowspan=5, columnspan=3)
+
+        DescPg = [Item1, Item1, Item1, Item1, Item1, Item1, Item1, Item1, Item1]
+        
+        NA = tk.PhotoImage(file='NA/NA.png')
+        img = []
+        img.append(tk.PhotoImage(file='Item1/Shop.png'))
+        img.append(tk.PhotoImage(file='Item2/Shop.png'))
+        img.append(tk.PhotoImage(file='Item3/Shop.png'))
+        img.append(tk.PhotoImage(file='Item4/Shop.png'))
+        img.append(tk.PhotoImage(file='Item5/Shop.png'))
+        
+        imglab = []
+        i=0
+        for i in range(len(Avail)):
+            if Avail[i] == 1:
+                imglab.append(tk.Button(self, image=img[i], borderwidth=0, command=lambda: controller.show_frame(DescPg[i])))
+            if Avail[i] == 0:
+                imglab.append(tk.Label(self, image = NA, borderwidth=0))
+        
+        imglab[0].grid(row=1, column=0)
+        imglab[1].grid(row=1, column=1)
+        imglab[2].grid(row=1, column=2)
+        imglab[3].grid(row=2, column=0)
+        imglab[4].grid(row=2, column=1)
+        imglab[5].grid(row=2, column=2)
+        imglab[6].grid(row=3, column=0)
+        imglab[7].grid(row=3, column=1)
+        imglab[8].grid(row=3, column=2)
+        i=0
+        for i in range(len(Avail)):
+            if Avail[i] == 1:
+                imglab[i].photo = img[i]
+                imglab[i].lift()
+            else:
+                imglab[i].photo = NA
+                imglab[i].lift()
+
+
+
+
+class Item1(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.configure(bg="white")
+        
+        rat = 'Item1'
+
+        nameimg = tk.PhotoImage(file=rat+'/Top.png')
+        name = tk.Label(self, image=nameimg, borderwidth=0, highlightthickness=0)
+        name.photo = nameimg
+        name.grid(row=0, column=0, columnspan=2)
+
+        frameimg = tk.PhotoImage(file='DescPage/Frame.png')
+        frame = tk.Label(self, image=frameimg, borderwidth=0, highlightthickness=0)
+        frame.photo = frameimg
+        frame.grid(row=1, column=0, columnspan=2)
+
+        LArrimg = tk.PhotoImage(file='DescPage/LArrow.png')
+        LArr = tk.Button(self, image=LArrimg, borderwidth=0, height = 134, width = 540, highlightthickness=0)
+        LArr.photo = LArrimg
+        LArr.grid(row=2, column=0)
+
+       
+
+        tableimg = tk.PhotoImage(file=rat+'/Table.png')
+        table = tk.Label(self, image=tableimg, borderwidth=0)
+        table.photo = tableimg
+        table.grid(row=3, column=0, columnspan=2)
+
+        Acqimg = tk.PhotoImage(file='DescPage/View.png')
+        Acq = tk.Button(self, image=Acqimg, borderwidth=0, height = 284, width = 540, highlightthickness=0)
+        Acq.photo = Acqimg
+        Acq.grid(row=4, column=0)
+
+        Viewimg = tk.PhotoImage(file='DescPage/Acquire.png')
+        View = tk.Button(self, image=Viewimg, borderwidth=0, height = 284, width = 540, highlightthickness=0)
+        View.photo = Viewimg
+        View.grid(row=4, column=1)
         
         
-    '''
-class ShopPage2(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(5, weight=1)
-        self.columnconfigure(3, weight=1)
+        item = tk.Label(self, image=itempic[0], borderwidth=0)
+        item.photo = itempic[0]
+        item.grid(row=1, column=0, columnspan=2)
+        #changepic(item, itempic[1])
 
-        fill1=tk.LabelFrame(self, height=2, borderwidth=0, highlightthickness=0, bg="white")
-        fill1.grid(row=0, column=0)
+        itempic = []
+        itempic.append(tk.PhotoImage(file='Item1/Front.png'))
+        itempic.append(tk.PhotoImage(file='Item1/Side.png'))
+        itempic.append(tk.PhotoImage(file='Item1/Back.png'))
 
-        shoptitle = tk.Label(self, text="SHOP", font=('Ubuntu Condensed', int(100*s)), fg="pink", bg="white")
-        shoptitle.grid(row=0, column=2, columnspan=2)
+        def forward(image_number):
+            global item
+            global RArr
+            global button_back
+
+            item.grid_forget()
+            item = tk.Label(image=itempic[image_number-1])
+            button_foward = Button(root)
+
+        def back():
+            global item
+            global RArr
+            global button_back
 
         
-        homeimg = tk.PhotoImage(file='Images1024/homebutton.png')
-        b_home = tk.Button(self,image=homeimg, command=lambda: controller.show_frame(StartPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_home.image = homeimg
-        b_home.grid(row=0, column=5, sticky="ne")
+        RArrimg = tk.PhotoImage(file='DescPage/RArrow.png')
+    
+        RArr = tk.Button(self,command=lambda: changepic(item, itempic[1]), image=RArrimg, borderwidth=0, height = 134, width = 540, highlightthickness=0)
+        RArr.photo = RArrimg
+        RArr.grid(row=2, column=1)
 
-        item1img = tk.PhotoImage(file='Item4/Shop.png')
-        item1 = tk.Button(self, image=item1img, command=lambda: controller.show_frame(Item4Desc_1))
-        item1.photo = item1img
-        item1.grid(row=3,column=1)
-
-        item2img = tk.PhotoImage(file='Item5/Shop.png')
-        item2 = tk.Button(self, image=item2img, command=lambda: controller.show_frame(Item5Desc_1))
-        item2.photo = item2img
-        item2.grid(row=3,column=3)
-
-        item3img = tk.PhotoImage(file='Item6/Shop.png')
-        item3 = tk.Button(self, image=item3img, command=lambda: controller.show_frame(Item6Desc_1))
-        item3.photo = item3img
-        item3.grid(row=3,column=4)
-
-        fill2=tk.LabelFrame(self, width=int(80*s), borderwidth=0, highlightthickness=0, bg="white")
-        fill2.grid(row=0, column=0, rowspan=3)
-
-        fill3=tk.LabelFrame(self, width=3, borderwidth=0, highlightthickness=0, bg="white")
-        fill3.grid(row=3, column=2, rowspan=3)
-
-        backimg = tk.PhotoImage(file='Images1024/b_back.png')
-        b_back = tk.Button(self, image=backimg, text="Next Page", command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_back.photo = backimg
-        b_back.grid(row=4, column=3)
-#
-        '''
-class Item1Desc_1(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="B/W STRIPED BUTTON UP", font=('Ubuntu Condensed', int(50*s)), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item1Desc_3), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item1Desc_2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item1/Desc.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=int(20*s), borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: RAW DE\nSize: Medium \nDimensions: \nFits Like: Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)
-        fillR=tk.LabelFrame(self, width=int(40*s), borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-        
-class Item1Desc_2(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="B/W STRIPED BUTTON UP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item1Desc_1), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item1Desc_3), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item1/Side.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: RAW DE\nSize: Medium \nDimensions: \nFits Like: Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)  
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-
-class Item1Desc_3(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="B/W STRIPED BUTTON UP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item1Desc_2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item1Desc_1), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item1/Back.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: RAW DE\nSize: Medium \nDimensions: \nFits Like: Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)  
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-
-
-
-class Item2Desc_1(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="RED FLORAL TUBE TOP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item2Desc_3), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item2Desc_2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item2/Desc.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-        
-class Item2Desc_2(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="RED FLORAL TUBE TOP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item2Desc_1), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item2Desc_3), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item2/Side.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)  
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-
-class Item2Desc_3(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="RED FLORAL TUBE TOP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item2Desc_2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item2Desc_1), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item2/Back.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)  
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-
-
-
-class Item3Desc_1(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="GREY FUR JACKET", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item3Desc_3), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item3Desc_2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item3/Desc.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: H&M\nSize: Small \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-        
-class Item3Desc_2(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="GREY FUR JACKET", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item3Desc_1), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item3Desc_3), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item3/Side.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: H&M\nSize: Small \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)  
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-
-class Item3Desc_3(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="GREY FUR JACKET", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item3Desc_2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item3Desc_1), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item3/Back.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: H&M\nSize: Small \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)  
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-
-class Item4Desc_1(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="TEAL FLOWY TOP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item4Desc_3), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item4Desc_2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item4/Desc.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: AMERICAN EAGLE\nSize: Medium \nDimensions: \nFits Like: Medium/Large\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-        
-class Item4Desc_2(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="TEAL FLOWY TOP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item4Desc_1), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item4Desc_3), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item4/Side.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: AMERICAN EAGLE\nSize: Medium \nDimensions: \nFits Like: Medium/Large\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)  
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-
-class Item4Desc_3(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="TEAL FLOWY TOP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item4Desc_2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item4Desc_1), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item4/Back.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: AMERICAN EAGLE\nSize: Medium \nDimensions: \nFits Like: Medium/Large\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)  
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-
-class Item5Desc_1(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="B/W STRIPED BUTTON UP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item5Desc_3), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item5Desc_2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item5/Desc.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-        
-class Item5Desc_2(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="B/W STRIPED BUTTON UP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item5Desc_1), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item5Desc_3), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item5/Desc.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)  
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-
-class Item5Desc_3(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="B/W STRIPED BUTTON UP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item5Desc_2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item5Desc_1), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item5/Desc.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)  
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-
-
-class Item6Desc_1(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="B/W STRIPED BUTTON UP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item6Desc_3), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item6Desc_2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item6/Desc.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-        
-class Item6Desc_2(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="B/W STRIPED BUTTON UP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item6Desc_1), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item6Desc_3), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item6/Desc.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)  
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
-
-class Item6Desc_3(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, weight=1)
-        self.columnconfigure(4, weight=1)
-        item1title = tk.Label(self, text="B/W STRIPED BUTTON UP", font=('Ubuntu Condensed', 50), fg="pink", bg="white")
-        item1title.grid(row=0, column=2, columnspan=3)
-        L_img = tk.PhotoImage(file='Images1024/arrowl.png')
-        R_img = tk.PhotoImage(file='Images1024/arrowr.png')
-        L_but=tk.Button(self,image=L_img, command=lambda: controller.show_frame(Item6Desc_2), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        L_but.photo=L_img
-        L_but.grid(row=1, column=1, rowspan=8)
-        R_but=tk.Button(self,image=R_img, command=lambda: controller.show_frame(Item6Desc_1), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        R_but.photo=R_img
-        R_but.grid(row=1, column=3, rowspan=8)
-        #image = Image.open("ClothesImages/redtop.png")
-        #resized = image.resize((500, 624))
-        item1img1 = tk.PhotoImage(file='Item6/Desc.png')
-        #item1img2 = PhotoImage(file='ClothesImages1024/redtopside.png')
-        #item1img3 = PhotoImage(file='ClothesImages1024/redtopback.png')
-        item1 = tk.Label(self, image=item1img1)
-        item1.photo = item1img1
-        item1.grid(row=1,column=2, rowspan=8)
-        filltopinfo = tk.LabelFrame(self, height=20, borderwidth=0, bg="white", highlightthickness=0)
-        filltopinfo.grid(row=1, column=4)
-        info = tk.Label(self, text="Brand: Forever21\nSize: Medium \nDimensions: \nFits Like: Small/Medium\n", font=('Ubuntu Condensed', 35), fg="pink", bg="white")
-        info.grid(row=2, column=4, rowspan=3)
-        rentimg = tk.PhotoImage(file='Images1024/b_purchase.png')
-        allimg = tk.PhotoImage(file='Images1024/b_all.png')
-        b_rent = tk.Button(self, image=rentimg, command=lambda: controller.show_frame(TokenPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_all = tk.Button(self, image=allimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)      
-        b_rent.photo = rentimg
-        b_all.photo = allimg
-        b_rent.grid(row=5, column=4)
-        b_all.grid(row=6, column=4)
-        fillL=tk.LabelFrame(self, width=1, borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)  
-        fillR=tk.LabelFrame(self, width=40, borderwidth=0, highlightthickness=0, bg="white")
-        fillR.grid(column=5)
+        LArr = tk.Button(self,command=lambda: changepic(item, itempic[1]), image=RArrimg, borderwidth=0, height = 134, width = 540, highlightthickness=0)
+        LArr.photo = RArrimg
+        LArr.grid(row=2, column=1)

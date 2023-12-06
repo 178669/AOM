@@ -22,13 +22,8 @@ class startApp(tk.Tk):
         self.frames = {}
 
         #loop for frame/page initialization
-        for F in (StartPage, ChoicePage, DonatePage, TokenPage, ShopPage, ShopPage2,
-            Item1Desc_1, Item1Desc_2, Item1Desc_3,
-            Item2Desc_1, Item2Desc_2, Item2Desc_3,
-            Item3Desc_1, Item3Desc_2, Item3Desc_3,
-            Item4Desc_1, Item4Desc_2, Item4Desc_3,
-            Item5Desc_1, Item5Desc_2, Item5Desc_3,
-            Item6Desc_1, Item6Desc_2, Item6Desc_3):
+        for F in (StartPage, ChoicePage, DonatePage, TokenPage, ShopPage,
+            Item1):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nw")
