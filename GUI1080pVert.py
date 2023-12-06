@@ -23,14 +23,14 @@ class startApp(tk.Tk):
 
         #loop for frame/page initialization
         for F in (StartPage, ChoicePage, DonatePage, TokenPage, ShopPage,
-            Item1):
+            Item1, Item2, Item3, Item4, Item5, AcquirePage):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nw")
         self.show_frame(StartPage)
 
     #displays current frame passed as input
-    def show_frame(self, cont):
+    def show_frame(self, cont): 
         playsound('Drip.mp3')
         frame = self.frames[cont]
         frame.tkraise()
@@ -50,7 +50,7 @@ dsrdtr=False,
 writeTimeout=5)
 
 app = startApp()
-app.attributes('-fullscreen', True)#enable this for demo
+#app.attributes('-fullscreen', True)#enable this for demo
 #app.configure(cursor='none')
 app.mainloop()
 
