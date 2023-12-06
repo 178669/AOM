@@ -3,10 +3,8 @@ import SerialControl as Ser
 from PIL import Image, ImageTk
 from itertools import count, cycle
 
-s = 1.55 # s for scale
 
 class StartPage(tk.Frame):
-
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.configure(bg="white")
@@ -30,60 +28,6 @@ class StartPage(tk.Frame):
         cloud.photo=cloudimg
         cloud.grid(row=3, column=0)
 
-'''
-class ChoicePage(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.configure(bg="white")
-        self.rowconfigure(6, minsize=int(50*s), weight=0)
-        self.columnconfigure(3, minsize=int(270*s), weight=0)  # weight allows for resizing
-
-        b_donateimg = tk.PhotoImage(file='Images1024/b_donate.png')
-        b_shopimg = tk.PhotoImage(file='Images1024/b_shop.png')
-        b_tradeimg = tk.PhotoImage(file='Images1024/b_trade.png')
-
-        img1 = tk.PhotoImage(file='Images1024/oneimg.png')
-        img2 = tk.PhotoImage(file='Images1024/twoimg.png')
-        img3 = tk.PhotoImage(file='Images1024/threeimg.png')
-
-        imglab1 = tk.Label(self, image=img1, borderwidth=0)
-        imglab2 = tk.Label(self, image=img2, borderwidth=0) 
-        imglab3 = tk.Label(self, image=img3, borderwidth=0)
-
-        imglab1.photo=img1
-        imglab2.photo=img2
-        imglab3.photo=img3
-
-        imglab1.grid(row=1, column=1, columnspan=2)
-        imglab2.grid(row=3, column=1, columnspan=2)
-        imglab3.grid(row=5, column=1, columnspan=2)
-
-        title=tk.Label(self, height=1, highlightthickness=0, borderwidth=0,fg="pink", bg="white", text="SELECT AN OPTION", font=('Ubuntu Condensed', int(60*s)))
-        title.grid(row=0, column=2, columnspan=3)
-
-        fillL=tk.LabelFrame(self, width=int(180*s), borderwidth=0, highlightthickness=0, bg="white")
-        fillL.grid(column=0)
-        #fill3=LabelFrame(self, width=50, borderwidth=0, highlightthickness=0, bg="white")
-        #fill3.grid(row=0, column=2)
-
-        b_donate = tk.Button(self, image=b_donateimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_donate.photo = b_donateimg
-        b_donate.grid(row=1, column=2, columnspan=3)
-        donatelabel = tk.Label(self,text= "Donate washed clothing items to the bin below. \nGain 1 Shop Credit per Item.", font=('Ubuntu Condensed', int(20*s)), justify="center", bg="white")
-        donatelabel.grid(row=2, column=2, columnspan=3)
-
-        b_shop = tk.Button(self, image=b_shopimg, command=lambda: controller.show_frame(ShopPage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_shop.photo = b_shopimg
-        b_shop.grid(row=3, column=2, columnspan=3)
-        shoplabel = tk.Label(self, text= "Browse through our washed clothes and select one to rent. \nPick up your item at the Clothing Collection Window", font=('Ubuntu Condensed', int(20*s)), justify="center", bg="white", highlightthickness=0)
-        shoplabel.grid(row=4, column=2, columnspan=3)
-
-        b_trade = tk.Button(self, image=b_tradeimg, command=lambda: controller.show_frame(DonatePage), borderwidth=0, bg="white", activebackground="white", highlightthickness=0)
-        b_trade.photo = b_tradeimg
-        b_trade.grid(row=5, column=2, columnspan=3)
-        tradelabel = tk.Label(self, text= "Once you are done wearing your item, redonate it and take another", font=('Ubuntu Condensed', int(20*s)), justify="center", bg="white")
-        tradelabel.grid(row=6, column=2, columnspan=3)
-'''
 class ChoicePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -117,7 +61,6 @@ class ChoicePage(tk.Frame):
         b_shop.photo = b_shopimg
         b_shop.grid(row=4)
 
-
 class DonatePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -132,13 +75,8 @@ class DonatePage(tk.Frame):
         
         donateT.grid(row=0)
         b_done.grid(row=1)
-        
-        
+           
 class ImageLabel(tk.Label):
-    """
-    A Label that displays images, and plays them if they are gifs
-    :im: A PIL Image instance or a string filename
-    """
     def load(self, im):
         if isinstance(im, str):
             im = Image.open(im)
@@ -166,7 +104,6 @@ class ImageLabel(tk.Label):
             self.config(image=next(self.frames))
             self.after(self.delay, self.next_frame)
     
-
 class TokenPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -201,7 +138,7 @@ class TokenPage(tk.Frame):
         # set first image on canvas
         #self.image_on_canvas = self.canvas.create_image(300, 353, image=self.my_images[self.my_image_number])
         b_done.grid(row=2)
-        
+
 class AcquirePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -236,6 +173,13 @@ class AcquirePage(tk.Frame):
         # set first image on canvas
         #self.image_on_canvas = self.canvas.create_image(300, 353, image=self.my_images[self.my_image_number])
         b_done.grid(row=2)
+
+def Go(controller, target, page):
+    DescPg = [Item1, Item2, Item3, Item4, Item5, Item1, Item1, Item1, Item1]
+    controller.show_frame(DescPg[page])
+
+    Ser.controlmotor(target, 5)
+    
 
 class ShopPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -286,11 +230,11 @@ class ShopPage(tk.Frame):
                 imglab.append(tk.Button(self, image = NA, borderwidth=0))
         '''
         
-        imglab.append(tk.Button(self, image=img[0], borderwidth=0, command=lambda: controller.show_frame(DescPg[0])))
-        imglab.append(tk.Button(self, image=img[1], borderwidth=0, command=lambda: controller.show_frame(DescPg[1])))
-        imglab.append(tk.Button(self, image=img[2], borderwidth=0, command=lambda: controller.show_frame(DescPg[2])))
-        imglab.append(tk.Button(self, image=img[3], borderwidth=0, command=lambda: controller.show_frame(DescPg[3])))
-        imglab.append(tk.Button(self, image=img[4], borderwidth=0, command=lambda: controller.show_frame(DescPg[4])))
+        imglab.append(tk.Button(self, image=img[0], borderwidth=0, command=lambda: Go(controller, 1, 0)))
+        imglab.append(tk.Button(self, image=img[1], borderwidth=0, command=lambda: Go(controller, 2, 1)))
+        imglab.append(tk.Button(self, image=img[2], borderwidth=0, command=lambda: Go(controller, 3, 2)))
+        imglab.append(tk.Button(self, image=img[3], borderwidth=0, command=lambda: Go(controller, 4, 3)))
+        imglab.append(tk.Button(self, image=img[4], borderwidth=0, command=lambda: Go(controller, 5, 4)))
         imglab.append(tk.Button(self, image = NA, borderwidth=0))
         imglab.append(tk.Button(self, image = NA, borderwidth=0))
         imglab.append(tk.Button(self, image = NA, borderwidth=0))

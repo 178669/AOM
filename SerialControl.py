@@ -3,10 +3,12 @@ import tkinter as tk
 import time
 import serial
 import re
+import math
+
 #from test import StartPage
 def controlmotor(target, max):
     '''Motor Notes:
-        - 10:1 Gear Ratio [Wood Gear]
+        - 5:1 Gear Ratio [Acryllic]
     '''
     arduino = serial.Serial(
     port='/dev/ttyUSB0',
@@ -58,12 +60,13 @@ def calc(target, max):
     file = open("ArduinoCode/LastIndex.txt", "w")
     file.write(str(target))
     CW = 2
-    if current<=3 and target-current>3:
+
+    if current<=2 and target-current>2:
         CW = 0
         distance = abs(target-max)+current
         return (CW, distance)
 
-    elif current>=3 and current-target>=3:
+    elif current>=2 and current-target>=2:
         CW = 1
         distance = abs(current-max)+target
         return (CW, distance)
