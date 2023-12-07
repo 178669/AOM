@@ -6,12 +6,14 @@ import re
 import math
 
 #from test import StartPage
+portarr = ['/dev/ttyUSB0', 'COM4']
+HPorJetson = 0
 def controlmotor(target, max):
     '''Motor Notes:
         - 5:1 Gear Ratio [Acryllic]
     '''
     arduino = serial.Serial(
-    port='/dev/ttyUSB0',
+    port=portarr[HPorJetson],
     baudrate=9600,
     bytesize=serial.EIGHTBITS,
     parity=serial.PARITY_NONE,
@@ -52,7 +54,7 @@ def controlmotor(target, max):
 #function to determine if CW or CCW is faster
 #assuming CW is associated with positive positional indicies
 
-def calc(target, max):
+def calc(target, maxi):
     file = open("ArduinoCode/LastIndex.txt", "r")
     current = int(file.read())
     file.close()
@@ -60,22 +62,26 @@ def calc(target, max):
     file = open("ArduinoCode/LastIndex.txt", "w")
     file.write(str(target))
     CW = 2
-
-    if current<=2 and target-current>2:
-        CW = 0
-        distance = abs(target-max)+current
-        return (CW, distance)
-
-    elif current>=2 and current-target>=2:
+    #switch case for most optimal path for rotation b/c I don't want to think anymore :)
+    if 2 >= target-current > 0:
         CW = 1
-        distance = abs(current-max)+target
-        return (CW, distance)
-    else:
+        distance = target-current
+        return CW, distance
+    elif target-current == 0:
+        return 2, 0
+    elif target-current<0 and abs(target-current)<=2:
+        CW = 0
+        distance = abs(target-current)
+        return CW, distance
+    elif current >= 4 and target == 5:
+        CW = 1
         distance = target - current
-        if distance>0:
-            CW = 1
-            return (CW, distance)
-        if distance<0:
-            CW = 0
-            return (CW, abs(distance))
-        return (CW, distance)
+        return CW, distance
+    elif current >= 4 and target == 1:
+        CW = 1
+        distance = maxi-current + target
+        return CW, distance
+    else:
+        CW = 0
+        distance = abs(maxi-target)+current
+        return CW, distance
