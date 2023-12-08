@@ -7,17 +7,17 @@
 
 //1000 steps for 5:1 gear rotation
 //5 equal size steps of 200
-const int stepsPerRevolution = 200;
+const int steps = 200;
+const int stepPin = 2; //X.STEP
+const int dirPin = 5; // X.DIR
 
 // Create Instance of Stepper library
-Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11);
-
 
 void setup()
 {
 	// set the speed at 60 rpm:
-	myStepper.setSpeed(30);
-	// initialize the serial port:
+  pinMode(stepPin,OUTPUT); 
+  pinMode(dirPin,OUTPUT);	// initialize the serial port:
 	Serial.begin(9600);
   while (!Serial){
   ;//waiting for serial connection
@@ -35,36 +35,69 @@ void loop()
     if(FromJetson == "Clock1")
       {//CCW when shaft pointing up
         Serial.println("CW Rotation 1: " + FromJetson);
-        myStepper.step(stepsPerRevolution);;
+        //clockwise rotation when shaft facing downwards:
+        for(int x = 0; x < steps; x++) 
+          {
+            digitalWrite(stepPin,HIGH); 
+            delayMicroseconds(1000); 
+            digitalWrite(stepPin,LOW); 
+            delayMicroseconds(1000);       
+          }
       }
-
     if(FromJetson == "Clock2")
       {//CCW when shaft pointing up
         Serial.println("CW Rotation 2: " + FromJetson);
-        myStepper.step(stepsPerRevolution*2);;
+        for(int x = 0; x < steps*2; x++) 
+          {
+            digitalWrite(stepPin,HIGH); 
+            delayMicroseconds(1000); 
+            digitalWrite(stepPin,LOW); 
+            delayMicroseconds(1000); 
+          }
       }
     if(FromJetson == "Clock3")
       {
         Serial.println("CW Rotation 3: " + FromJetson);
-        myStepper.step(stepsPerRevolution*3);;
+        for(int x = 0; x < steps*3; x++) 
+          {
+            digitalWrite(stepPin,HIGH); 
+            delayMicroseconds(1000); 
+            digitalWrite(stepPin,LOW); 
+            delayMicroseconds(1000); 
+          }
       }
-    
     if(FromJetson == "Counter1")
       {
         Serial.println("CCW Rotation 1: " + FromJetson);
-        myStepper.step(-stepsPerRevolution*1);;
+        for(int x = 0; x < 200; x++) 
+          {
+            digitalWrite(stepPin,HIGH);
+            delayMicroseconds(1000);
+            digitalWrite(stepPin,LOW);
+            delayMicroseconds(1000);
+          }
       }
-
     if(FromJetson == "Counter2")
       {
         Serial.println("CCW Rotation 1: " + FromJetson);
-        myStepper.step(-stepsPerRevolution*2);;
+        for(int x = 0; x < 200*2; x++) 
+          {
+            digitalWrite(stepPin,HIGH);
+            delayMicroseconds(1000);
+            digitalWrite(stepPin,LOW);
+            delayMicroseconds(1000);
+          }
       }
 
     if(FromJetson == "Counter3")
       {
-        Serial.println("CCW Rotation 1: " + FromJetson);
-        myStepper.step(-stepsPerRevolution*3);
+        for(int x = 0; x < 200*3; x++) 
+          {
+            digitalWrite(stepPin,HIGH);
+            delayMicroseconds(1000);
+            digitalWrite(stepPin,LOW);
+            delayMicroseconds(1000);
+          }
       }
      
      }

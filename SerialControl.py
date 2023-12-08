@@ -6,7 +6,7 @@ import re
 import math
 
 #from test import StartPage
-portarr = ['/dev/ttyUSB0', 'COM4']
+portarr = ['/dev/ttyUSB0', 'COM9']
 HPorJetson = 0
 def controlmotor(target, max):
     '''Motor Notes:
