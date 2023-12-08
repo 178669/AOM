@@ -1,0 +1,6 @@
+This is a GUI specially designed for The Fashion Library's physical and portable second-hand clothing vending machine.
+The Fashion Library is a Capstone Project made in the best class at the University of Pittsburgh (in my opinion): The Art of Making (AOM): An Introduction to Hands-On System Design and Engineering.
+
+    Thank you Dr. Samosky for creating and improving AOM to the phenomenal student experience it is today.
+    Thank you to the best team members I've ever had: Caeden Wargo, Lauren Gilfillan, Lauren Harrington, & Jason Worrell. 💗 you all
+

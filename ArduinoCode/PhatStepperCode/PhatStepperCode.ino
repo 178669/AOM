@@ -33,6 +33,7 @@ void loop()
     String FromJetson = Serial.readStringUntil(TERMINATOR);
     Serial.print("Serial MSG: " + FromJetson);
     if(FromJetson == "Clock1")
+    digitalWrite(dirPin,HIGH)
       {//CCW when shaft pointing up
         Serial.println("CW Rotation 1: " + FromJetson);
         //clockwise rotation when shaft facing downwards:
@@ -46,6 +47,7 @@ void loop()
       }
     if(FromJetson == "Clock2")
       {//CCW when shaft pointing up
+        digitalWrite(dirPin,HIGH)
         Serial.println("CW Rotation 2: " + FromJetson);
         for(int x = 0; x < steps*2; x++) 
           {
@@ -57,6 +59,7 @@ void loop()
       }
     if(FromJetson == "Clock3")
       {
+        digitalWrite(dirPin,HIGH)
         Serial.println("CW Rotation 3: " + FromJetson);
         for(int x = 0; x < steps*3; x++) 
           {
@@ -68,6 +71,7 @@ void loop()
       }
     if(FromJetson == "Counter1")
       {
+        digitalWrite(dirPin,LOW)
         Serial.println("CCW Rotation 1: " + FromJetson);
         for(int x = 0; x < 200; x++) 
           {
@@ -79,6 +83,7 @@ void loop()
       }
     if(FromJetson == "Counter2")
       {
+        digitalWrite(dirPin,LOW)
         Serial.println("CCW Rotation 1: " + FromJetson);
         for(int x = 0; x < 200*2; x++) 
           {
@@ -91,6 +96,7 @@ void loop()
 
     if(FromJetson == "Counter3")
       {
+        digitalWrite(dirPin,LOW)
         for(int x = 0; x < 200*3; x++) 
           {
             digitalWrite(stepPin,HIGH);
