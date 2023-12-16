@@ -3,7 +3,7 @@ import tkinter as tk
 import serial
 import SerialControl as Ser
 from Pages1080pVert import *
-from playsound import playsound
+#from playsound import playsound
 
 #from pykeyboard import PyKeyboard
 class startApp(tk.Tk):
@@ -11,7 +11,7 @@ class startApp(tk.Tk):
     def __init__(self, *args, **kwargs):
 
         #Tk constructor
-        tk.Tk.__init__(self, *args, **kwargs)
+        tk.Tk.__init__(self, *args, **kwargs)   
         container = tk.Frame(self)
         container.pack(side = "top", fill = "both", expand = True)
 
@@ -26,24 +26,19 @@ class startApp(tk.Tk):
             Item1, Item2, Item3, Item4, Item5, AcquirePage):
             frame = F(container, self)
             self.frames[F] = frame
-            #frame.grid(row=0, column=0, sticky="nw")
+            frame.grid(row=0, column=0, sticky="nw")
         self.show_frame(StartPage)
 
     #displays current frame passed as input
-    def show_frame(self, cont):
-        keylist = [StartPage, ChoicePage, DonatePage, TokenPage, ShopPage,
-        Item1, Item2, Item3, Item4, Item5, AcquirePage]
-        last = keylist.index(cont)-1
-        self.frames[keylist[last]].grid_remove()
+    def show_frame(self, cont): 
         #playsound('Drip.mp3')
         frame = self.frames[cont]
-        frame.grid(row=0, column = 0, sticky="nw")
         frame.tkraise()
+        
 
-portarr = Ser.portarr
-HPorJetson = Ser.HPorJetson
+
 arduino = serial.Serial(
-port= portarr[HPorJetson],
+port='/dev/ttyUSB0',
 baudrate=9600,
 bytesize=serial.EIGHTBITS,
 parity=serial.PARITY_NONE,
